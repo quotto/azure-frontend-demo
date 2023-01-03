@@ -32,6 +32,6 @@ jobs:
     - name: Upload files
       uses: azure/CLI@v1
       with:
-        azurecliversion: 2.30.0
+        azcliversion: 2.30.0
         inlineScript: |
-          az storage blob upload-batch -d superdemostoragecdn -s ./dist
+          az storage blob upload-batch -d $web --account-name superdemostoragecdn -s ./dist
