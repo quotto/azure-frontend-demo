@@ -1,0 +1,36 @@
+name: Azure Frontend Demo App
+on:
+  push:
+    branches-ignore:
+      - main
+permissions:
+  id-token: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - uses: actions/checkout@v3.1.0
+      with:
+          token: ${{secrets.MY_GITHUB_TOKEN}}
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.5.1
+      with:
+        always-auth: false
+        node-version: 18.x
+    - name: Packaging
+      run: |
+        npm run build
+    - name: Login to Azure
+      uses: azure/login@v1.4.6
+      continue-on-error: false
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.SUBSCRIPTIONID }}
+    - name: Upload files
+      uses: azure/CLI@v1
+      with:
+        azurecliversion: 2.30.0
+        inlineScript: |
+          az storage blob upload-batch -d superdemostoragecdn -s ./dist
