@@ -34,4 +34,4 @@ jobs:
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az storage blob upload-batch -d \web --account-name superdemostoragecdn -s ./dist
+          az storage blob upload-batch -d \$web --account-name superdemostoragecdn -s ./dist
