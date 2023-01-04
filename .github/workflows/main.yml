@@ -19,6 +19,10 @@ jobs:
         always-auth: false
         node-version: 18.x
     - name: Packaging
+      env:
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        AZURE_FRONTEND_CLIENT_ID: ${{ secrets.AZURE_FRONTEND_CLIENT_ID }}
+        AZURE_REST_API_CLIENT_ID: ${{ secrets.AZURE_REST_API_CLIENT_ID }}
       run: |
         npm install
         npm run build
