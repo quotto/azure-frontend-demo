@@ -84,15 +84,15 @@
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title" id="DoFunction">Call REST API</h5>
-            <button class="btn btn-primary" id="delegate-call" onclick="App.callDelegateRestApi()">プロフィール取得</button>
+            <button class="btn btn-primary" id="delegate-call" onclick="App.callGetUserProfileApi()">プロフィール取得</button>
             <p>サインインユーザーの権限を使ってREST API経由で情報を取得します</p>
             <br>
             <br>
-            <button class="btn btn-primary" id="independent-call" onclick="App.callIndependentRestApi()">テナント配下の全ユーザー取得</button>
+            <button class="btn btn-primary" id="independent-call" onclick="App.callGetAllTenantUsersApi()">テナント配下の全ユーザー取得</button>
             <p>呼び出し先のREST APIの権限を使って情報を取得します</p>
             <br>
             <br>
-            <button class="btn btn-primary" id="without-token-call" onclick="App.callRestApiWithoutToken()">認証無しでプロフィール取得</button>
+            <button class="btn btn-primary" id="without-token-call" onclick="App.callGetUserApiWithoutToken()">認証無しでプロフィール取得</button>
             <p>Bearerトークンを付与せずにREST API経由でプロフィール取得を実行します（エラーになります）</p>
           </div>
         </div>
