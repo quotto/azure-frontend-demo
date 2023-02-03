@@ -1,3 +1,3 @@
 const shell = require("shelljs");
 
-shell.cp("-R", "src/views", "dist/");
+shell.cp("-R", "src/views/*", "dist/");
