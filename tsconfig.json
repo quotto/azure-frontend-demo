@@ -4,8 +4,15 @@
         "module": "CommonJS",
         "noImplicitAny": true,
         "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
         "rootDir": "./src",
         "outDir": "./build-tsc",
-        "strict": true
+        "strict": true,
+        "jsx": "react",
+        "lib": [
+            "dom",
+            "es2017"
+        ]
     }
 }
