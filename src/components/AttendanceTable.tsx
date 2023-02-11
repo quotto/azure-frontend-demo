@@ -13,7 +13,7 @@ const TimeRecord = (props: any)=>{
             <td>{data.inTime ? data.inTime : ""}</td>
             <td>{data.outTime ? data.outTime : ""}</td>
             <td>{(data.inTime && typeof(data.outTime) === "undefined") || (data.inTime > (data.outTime || "")) ?
-                <Button disabled={ownId!=data.userId} onClick={()=>{
+                <Button variant="danger" disabled={ownId!=data.userId} onClick={()=>{
                     const outTime = format(utcToZonedTime(Date.now(), "Asia/Tokyo"), "HH:mm")
                     props.updateAttendanceRecord(Object.assign(data,{outTime: outTime}));
                 }}>出る</Button>:

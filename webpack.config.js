@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const  DotEnv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -13,13 +14,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/templates/index.html'
     }),
-    new webpack.DefinePlugin({
-      AZURE_TENANT_ID: JSON.stringify(process.env.AZURE_TENANT_ID),
-      AZURE_FRONTEND_CLIENT_ID: JSON.stringify(process.env.AZURE_FRONTEND_CLIENT_ID),
-      AZURE_PROFILE_API_CLIENT_ID: JSON.stringify(process.env.AZURE_PROFILE_API_CLIENT_ID),
-      AZURE_PROFILE_API_ENDPOINT: JSON.stringify(process.env.AZURE_PROFILE_API_ENDPOINT),
-      AZURE_ATTENDANCE_API_ENDPOINT: JSON.stringify(process.env.AZURE_ATTENDANCE_API_ENDPOINT),
-    }),
+    // new webpack.DefinePlugin({
+    //   AZURE_TENANT_ID: JSON.stringify(process.env.AZURE_TENANT_ID),
+    //   AZURE_FRONTEND_CLIENT_ID: JSON.stringify(process.env.AZURE_FRONTEND_CLIENT_ID),
+    //   AZURE_PROFILE_API_CLIENT_ID: JSON.stringify(process.env.AZURE_PROFILE_API_CLIENT_ID),
+    //   AZURE_PROFILE_API_ENDPOINT: JSON.stringify(process.env.AZURE_PROFILE_API_ENDPOINT),
+    //   AZURE_ATTENDANCE_API_ENDPOINT: JSON.stringify(process.env.AZURE_ATTENDANCE_API_ENDPOINT),
+    // }),
+    new DotEnv()
   ],
   output: {
     path: __dirname + '/dist',
@@ -54,5 +56,11 @@ module.exports = {
         ]
       }
     ]
+  },
+  // Dockerコンテナ内でwatchするための設定
+  // https://quotto-demo-functions-029e76e0.azurewebsites.net
+  watchOptions: {
+    ignored: '**/node_modules',
+    poll: 1000
   }
 }
